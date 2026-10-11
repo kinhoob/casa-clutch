@@ -27,6 +27,8 @@ Navegação, links oficiais, seções expansíveis, pausa de animações e formu
 
 `index.html`, `style.css`, `main.js`, `assets/logo.png` e `vendor/` (bibliotecas e licenças). `preview.cjs` é um servidor local opcional: `node preview.cjs`; usa 127.0.0.1:5180.
 
-Repositório: https://github.com/kinhoob/casa-clutch (privado).
+Repositório: https://github.com/kinhoob/casa-clutch (público, com autorização do usuário).
 
-Status: primeira versão para revisão; site ainda não publicado. Projeto separado do Estúdio Z. O arquivo `.nojekyll` prepara a raiz para hospedagem estática; a ativação de Pages e seu endereço dependerão das opções de visibilidade/hospedagem escolhidas depois da revisão.
+Prévia pública: https://kinhoob.github.io/casa-clutch/
+
+Status: primeira versão para revisão, com informações pendentes marcadas a confirmar. Projeto separado do Estúdio Z. GitHub Pages publica a branch `main`, pasta raiz, com HTTPS e `.nojekyll`. Alterações salvas nessa branch atualizam o site automaticamente.
