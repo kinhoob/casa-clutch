@@ -2,7 +2,6 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const motion = document.getElementById('motion');
 let paused = false, cleanup = () => {};
 const heroVideo=document.getElementById('hero-video');
-const heroMotion=document.getElementById('hero-motion');
 const heroVideos={desktop:'./assets/hero-drone.mp4',mobile:'./assets/hero-drone-mobile.mp4'};
 const mobileVideo=matchMedia('(max-width:700px)');
 let heroVisible=true;
@@ -18,6 +17,22 @@ heroVideo.addEventListener('error',()=>document.body.classList.remove('video-rea
 mobileVideo.addEventListener('change',syncVideo);
 const header=document.querySelector('header');
 const hero=document.querySelector('.hero');
+const scenes=[...document.querySelectorAll('main > .section')];
+function fitScenes(){
+ scenes.forEach(scene=>scene.classList.remove('scene-fit'));
+ if(innerWidth<1000 || reduced.matches || paused)return;
+ scenes.forEach(scene=>{if(scene.scrollHeight<=innerHeight-94)scene.classList.add('scene-fit');});
+}
+addEventListener('resize',fitScenes);
+document.querySelectorAll('details').forEach(detail=>detail.addEventListener('toggle',()=>{fitScenes();window.ScrollTrigger?.refresh();}));
+fitScenes();
+document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',()=>{
+ const target=document.getElementById(link.getAttribute('href').slice(1));
+ if(target?.tagName==='DETAILS')target.open=true;
+ let parent=target?.parentElement;
+ while(parent){if(parent.tagName==='DETAILS')parent.open=true;parent=parent.parentElement;}
+ fitScenes();
+}));
 new IntersectionObserver(entries=>{heroVisible=entries[0].isIntersecting;syncVideo();}).observe(hero);
 document.addEventListener('visibilitychange',syncVideo);
 function syncHeader(){
@@ -39,9 +54,7 @@ function setupMotion(){
  motion.disabled = reduced.matches;
  motion.setAttribute('aria-pressed',String(disabled));
  motion.textContent = reduced.matches ? 'Movimento reduzido' : paused ? 'Ativar movimento' : 'Pausar movimento';
- heroMotion.disabled=reduced.matches;
- heroMotion.setAttribute('aria-pressed',String(disabled));
- heroMotion.textContent=paused?'Reproduzir vídeo':'Pausar vídeo';
+ fitScenes();
  if(disabled || !window.gsap || !window.ScrollTrigger) return;
  gsap.registerPlugin(ScrollTrigger);
  const lenis = window.Lenis ? new Lenis({duration:1.05,anchors:false}) : null;
@@ -49,14 +62,32 @@ function setupMotion(){
  if(lenis){lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(tick);}
  const context=gsap.context(()=>{
   gsap.from('.hero h1',{y:30,opacity:0,duration:.9,ease:'power3.out'});
-  document.querySelectorAll('[data-reveal]').forEach(el=>gsap.from(el,{y:40,duration:.8,scrollTrigger:{trigger:el,start:'top 90%',once:true}}));
+  scenes.forEach(scene=>{
+   const content=[...scene.children];
+   gsap.from(content,{y:65,opacity:0,stagger:.06,duration:.85,ease:'power3.out',
+    scrollTrigger:{trigger:scene,start:'top 78%',toggleActions:'play none none reverse'}});
+  });
+  gsap.to('.hero-content',{y:-70,opacity:0,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom 35%',scrub:true}});
  });
  cleanup=()=>{context.revert();gsap.ticker.remove(tick);lenis?.destroy();};
 }
 motion.addEventListener('click',()=>{paused=!paused;setupMotion();});
-heroMotion.addEventListener('click',()=>{paused=!paused;setupMotion();});
 reduced.addEventListener('change',setupMotion);
 setupMotion();
+const intro=document.querySelector('.logo-intro');
+if(window.gsap && !reduced.matches && scrollY<100 && !location.hash){
+ const mark=intro.querySelector('.logo-crop'),brand=document.querySelector('.brand');
+ intro.style.display='flex';
+ const from=mark.getBoundingClientRect(),to=brand.getBoundingClientRect();
+ const introTimeline=gsap.timeline({onComplete:()=>{intro.remove();gsap.set(brand,{clearProps:'opacity'});}});
+ gsap.set(brand,{opacity:0});
+ introTimeline.from(mark,{opacity:0,scale:2,duration:.5,ease:'power2.out'})
+  .to(intro,{backgroundColor:'rgba(5,5,5,0)',duration:.5},'+=.15')
+  .to(mark,{x:to.left+to.width/2-(from.left+from.width/2),y:to.top+to.height/2-(from.top+from.height/2),scale:innerWidth<700?.78:1,duration:.9,ease:'power3.inOut'},'<')
+  .set(brand,{opacity:1});
+ addEventListener('resize',()=>{introTimeline.progress(1);},{once:true});
+ reduced.addEventListener('change',()=>{if(reduced.matches)introTimeline.progress(1);});
+}else{intro.remove();}
 document.getElementById('brief-form').addEventListener('submit',event=>{
  event.preventDefault();
  const form=event.currentTarget;

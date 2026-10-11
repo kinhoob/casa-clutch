@@ -55,3 +55,44 @@ footer{background:#050505;color:#aaa}
 .hero-atmosphere{display:none}
 .hero-shade{background:linear-gradient(180deg,#0008 0%,#0007 35%,#0008 70%,#000c 100%)}
 @media(max-width:700px){.hero{min-height:620px;padding:110px var(--pad) 120px}.hero h1{font-size:clamp(44px,11.5vw,76px);margin:26px 0}.hero-quote{font-size:17px}.hero-footer{bottom:26px;gap:12px}.hero-content>.eyebrow{font-size:9px}#hero-motion{padding:8px 10px;font-size:10px}}
+/* Cenas compactas e entrada da marca */
+.logo-intro{display:none;position:fixed;inset:0;z-index:90;background:#050505;pointer-events:none;align-items:center;justify-content:center}
+.logo-intro .logo-crop{transform:scale(2.6);transform-origin:center}
+.logo-intro .logo-crop img{filter:invert(1);mix-blend-mode:screen}
+.section{padding:45px var(--pad);position:relative}
+.section h2{font-size:clamp(38px,4.8vw,70px);margin:18px 0 25px}
+.manifesto{gap:22px 50px}.manifesto-copy blockquote{font-size:23px;margin-bottom:16px}
+.manifesto-copy p{font-size:14px;margin-bottom:10px}.strip{margin-top:12px;padding-top:18px;font-size:12px}
+.compact-house{grid-column:1/-1;margin:0;padding:18px 0}
+.compact-house .split h2{font-size:38px}.compact-house .split{gap:30px}
+.compact-house .split>div{padding:0}.facility-grid{gap:24px}.facility-grid h3{font-size:22px;margin-top:12px}
+.kika{gap:35px;margin-bottom:18px}.kika-art{min-height:190px;padding:22px}
+.kika-art strong{font-size:85px}.kika-art strong span{font-size:28px}
+.program-copy h3{font-size:34px;margin:12px 0}.program-copy p{font-size:13px}
+.program-actions{margin-top:12px}.project-row{padding:12px 0}.project-row h3{font-size:20px}
+.upcoming{padding:12px 0}.compact-creators{padding:16px 0}.compact-creators>h2{font-size:32px}
+.portrait{height:100px;font-size:62px}.portrait span{font-size:7px;bottom:9px}
+.people h3{font-size:25px;margin:12px 0}.people p{font-size:12px}
+.compact-creators details{margin-top:18px}.opportunities{margin:20px 0;gap:24px}
+.opportunities h3{font-size:23px;margin:15px 0}.commercial-details{margin-top:15px}
+.brands .split{gap:30px}.brands .split>p{font-size:15px}.brands .lead{margin:0}
+.audience{padding:18px 0;gap:25px}.audience strong{font-size:42px;margin:8px 0}
+.partner-note{margin-top:18px}.partner-note h3{font-size:20px;margin-bottom:8px}
+.big-link{font-size:28px;margin-top:18px;padding:15px 0}.draft{margin-top:12px!important}
+.brief h2{font-size:52px}.brief .split{gap:40px}.brief .split>div{padding-top:0}
+.brief label{margin-bottom:12px}.brief input,.brief select,.brief textarea{padding:10px;margin-top:6px}
+.brief textarea{height:95px}.brief form button{padding:12px}
+.confirmation h2{font-size:45px}.check-grid{margin-top:22px}
+.scene-active{z-index:2}
+@media(min-width:1000px){.scene-fit{position:sticky;top:94px;min-height:calc(100svh - 94px);display:flex;flex-direction:column;justify-content:center}.manifesto.scene-fit{display:grid;align-content:center}.scene-fit:not(:last-child){box-shadow:0 -20px 40px #0004}}
+@media(max-width:700px){.section{padding:38px var(--pad)}.kika-art{min-height:160px}.kika-art strong{font-size:68px}.people article{grid-template-columns:80px 1fr}.portrait{height:105px;font-size:50px}.big-link{font-size:25px}.logo-intro .logo-crop{transform:scale(1.9)}}
+@media(min-width:1000px){
+ .section{padding-top:25px;padding-bottom:25px}
+ .programs>h2,.brands>h2,.confirmation>h2{font-size:48px;line-height:1.1;margin:12px 0 18px}
+ .programs>h2 br,.brands>h2 br,.confirmation>h2 br{display:none}
+ .kika{margin-bottom:10px}.project-row{padding:9px 0}.upcoming{padding:9px 0}
+ .audience{padding:12px 0}.partner-note{margin-top:12px}
+ .partner-note p{font-size:12px}.big-link{font-size:25px;padding:12px 0;margin-top:12px}
+ .brands .split>p{font-size:14px}.brands .split{gap:35px}
+ .brief h2{font-size:44px;line-height:1.05;margin:12px 0 20px}
+}
