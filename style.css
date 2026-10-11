@@ -161,3 +161,4 @@ header.editorial-nav.nav-pending nav{opacity:0;visibility:hidden;transform:trans
 @media(max-width:700px){.editorial-gallery.swiper .editorial-card{width:82vw}}
 
 .editorial-art.program-photo{height:auto;aspect-ratio:16/9}.editorial-art.program-photo img{object-fit:contain}.editorial-art.person-photo{height:clamp(280px,42vh,440px);background:#111}.editorial-art.person-photo img{object-position:center 35%}
+.editorial-gallery.swiper{width:100%;max-width:100%;min-width:0;align-self:stretch}

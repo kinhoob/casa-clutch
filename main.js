@@ -64,9 +64,9 @@ document.querySelectorAll('.editorial-gallery').forEach(gallery=>{
  gallery.append(wrapper);gallery.classList.add('swiper');
  const speed=()=>reduced.matches||paused?0:650;
  const swiper=new Swiper(gallery,{
-  slidesPerView:'auto',centeredSlides:true,spaceBetween:30,loop:true,loopedSlides:3,
+  slidesPerView:1.8,centeredSlides:true,spaceBetween:30,loop:true,loopedSlides:3,
   speed:speed(),grabCursor:true,watchSlidesProgress:true,
-  breakpoints:{0:{spaceBetween:18},701:{spaceBetween:30}},
+  breakpoints:{0:{spaceBetween:18,slidesPerView:1.2},701:{spaceBetween:30,slidesPerView:1.8},1400:{spaceBetween:30,slidesPerView:2.3}},
   navigation:{prevEl:document.querySelector('[data-gallery="'+gallery.id+'"][data-direction="-1"]'),nextEl:document.querySelector('[data-gallery="'+gallery.id+'"][data-direction="1"]')},
   a11y:{enabled:true,prevSlideMessage:'Item anterior',nextSlideMessage:'Próximo item',slideLabelMessage:'{{index}} de {{slidesLength}}'},
   on:{progress(instance){instance.slides.forEach(card=>{card.style.setProperty('--tilt',Math.max(-8,Math.min(8,-card.progress*6))+'deg');});}}
