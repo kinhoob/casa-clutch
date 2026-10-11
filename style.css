@@ -44,3 +44,14 @@ footer{background:#050505;color:#aaa}
 }
 @media(prefers-reduced-motion:reduce){header,header nav,header #motion,.hero-media video{transition:none}}
 #hero-motion{display:none;background:#101010aa;border:1px solid #444;color:#ddd;padding:8px 14px;font-size:11px}.video-ready #hero-motion{display:block}
+/* Reel oficial / composição central */
+.hero{height:100svh;min-height:680px;padding:125px var(--pad) 110px}
+.hero-content{text-align:center;width:100%;margin:auto;z-index:1}
+.hero h1{font-size:clamp(58px,8.7vw,138px);margin:30px 0 26px}
+.hero-quote{color:#eee;text-shadow:0 2px 22px #000}
+.hero-content>.eyebrow{color:#ddd}
+.hero-footer{position:absolute;bottom:35px;left:var(--pad);right:var(--pad);margin:0}
+.hero-media{background:#080808 url('./assets/hero-poster.jpg') center/cover no-repeat}
+.hero-atmosphere{display:none}
+.hero-shade{background:linear-gradient(180deg,#0008 0%,#0007 35%,#0008 70%,#000c 100%)}
+@media(max-width:700px){.hero{min-height:620px;padding:110px var(--pad) 120px}.hero h1{font-size:clamp(44px,11.5vw,76px);margin:26px 0}.hero-quote{font-size:17px}.hero-footer{bottom:26px;gap:12px}.hero-content>.eyebrow{font-size:9px}#hero-motion{padding:8px 10px;font-size:10px}}

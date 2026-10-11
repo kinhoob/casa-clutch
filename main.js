@@ -3,13 +3,14 @@ const motion = document.getElementById('motion');
 let paused = false, cleanup = () => {};
 const heroVideo=document.getElementById('hero-video');
 const heroMotion=document.getElementById('hero-motion');
-// Preencha com os arquivos aprovados quando o reel estiver disponível.
-const heroVideos={desktop:'',mobile:''};
+const heroVideos={desktop:'./assets/hero-drone.mp4',mobile:'./assets/hero-drone-mobile.mp4'};
 const mobileVideo=matchMedia('(max-width:700px)');
+let heroVisible=true;
 function syncVideo(){
+ if(reduced.matches){heroVideo.pause();return;}
  const source=mobileVideo.matches ? (heroVideos.mobile||heroVideos.desktop) : heroVideos.desktop;
  if(source && heroVideo.getAttribute('src')!==source){heroVideo.src=source;heroVideo.load();}
- if(!source || paused || reduced.matches){heroVideo.pause();return;}
+ if(!source || paused || !heroVisible || document.hidden){heroVideo.pause();return;}
  heroVideo.play().catch(()=>{});
 }
 heroVideo.addEventListener('playing',()=>document.body.classList.add('video-ready'));
@@ -17,6 +18,8 @@ heroVideo.addEventListener('error',()=>document.body.classList.remove('video-rea
 mobileVideo.addEventListener('change',syncVideo);
 const header=document.querySelector('header');
 const hero=document.querySelector('.hero');
+new IntersectionObserver(entries=>{heroVisible=entries[0].isIntersecting;syncVideo();}).observe(hero);
+document.addEventListener('visibilitychange',syncVideo);
 function syncHeader(){
  const show=hero.getBoundingClientRect().bottom<=header.offsetHeight+80;
  header.classList.toggle('is-scrolled',show);
