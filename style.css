@@ -101,3 +101,49 @@ html{scroll-behavior:smooth}
 @media(min-width:1000px){.scene-fit{position:relative;top:auto;box-shadow:none!important}}
 .hero-footer .round{width:auto;height:auto;border-radius:0;padding:9px 16px;font-size:12px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Navegação editorial com marca central e galerias horizontais */
+html,body,.editorial-gallery{scrollbar-width:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar,.editorial-gallery::-webkit-scrollbar{display:none}
+header.editorial-nav{display:grid;grid-template-columns:1fr 110px 1fr;gap:30px;height:110px;padding:16px 32px;align-items:center}
+header.editorial-nav nav{opacity:1;visibility:visible;transform:none;margin:0;display:flex;justify-content:space-around;text-transform:uppercase;font-weight:700;font-size:12px;letter-spacing:.04em}
+.editorial-nav .brand{margin:0}
+.editorial-nav nav a{position:relative;display:inline-block;padding:10px 0;transition:letter-spacing .25s,color .25s}
+.editorial-nav nav a:hover,.editorial-nav nav a:focus-visible{text-decoration:none;letter-spacing:.13em;color:#bcbcbc}
+.editorial-nav nav a:after{content:"";position:absolute;left:0;right:0;bottom:5px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.editorial-nav nav a:hover:after,.editorial-nav nav a[aria-current]:after{transform:scaleX(1)}
+header.editorial-nav #motion{position:absolute;right:32px;top:88px;opacity:0;visibility:hidden}
+header.editorial-nav.is-scrolled #motion{opacity:1;visibility:visible}
+.editorial-section{padding:40px 0!important;min-height:calc(100svh - 110px)}
+.gallery-heading{text-align:center;padding:0 var(--pad);margin-bottom:20px}
+.gallery-heading h2{font-size:clamp(34px,4vw,58px);margin:12px 0}
+.gallery-heading p{font-size:13px;color:#aaa}
+.gallery-controls{display:flex;justify-content:center;gap:25px;margin-bottom:20px}
+.gallery-controls button{background:none;color:#bbb;border:0;border-bottom:1px solid #444;padding:5px 0;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.editorial-gallery{display:flex;gap:30px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px max(24px,calc((100vw - 650px)/2)) 25px;overscroll-behavior-x:contain;scroll-behavior:smooth}
+.editorial-card{flex:0 0 min(650px,78vw);scroll-snap-align:center;min-width:0;text-align:center;transition:opacity .5s,transform .5s;opacity:.48;transform:scale(.95)}
+.editorial-card.is-current,.editorial-card:focus-within{opacity:1;transform:scale(1)}
+.editorial-art{height:clamp(200px,33vh,360px);width:100%;min-height:0;overflow:hidden;margin-bottom:22px;border:1px solid #252525;position:relative}
+.editorial-card h3{font:clamp(25px,3vw,40px)/1.1 Georgia,serif;font-weight:400;margin:12px 0}
+.editorial-card p{font-size:13px;max-width:510px;margin:0 auto 12px;color:#bbb}
+.editorial-art img{display:block;width:100%;height:100%;object-fit:cover}
+.editorial-art.kika-art strong{font-size:clamp(90px,12vw,155px)}
+.title-art,.person-art{background:radial-gradient(ellipse at 50% 120%,#292929,#0b0b0b 75%);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px}
+.title-art>span{font-size:clamp(32px,5vw,65px);font-weight:700;line-height:1;letter-spacing:-.05em}
+.person-art>span{font-size:clamp(35px,6vw,80px);font-weight:700;letter-spacing:-.05em}
+.editorial-art small{font:8px monospace;color:#888;letter-spacing:.1em;position:absolute;bottom:15px}
+.gallery-note{text-align:center;padding:0 24px}
+.editorial-section>details{margin:20px var(--pad) 0}
+@media(max-width:700px){
+ header.editorial-nav{grid-template-columns:1fr 70px 1fr;padding:12px 16px;gap:12px;height:85px;min-height:85px}
+ header.editorial-nav nav{width:auto;order:0;gap:8px;flex-direction:column;font-size:9px;align-items:center}
+ header.editorial-nav nav a{padding:2px 0}
+ .editorial-nav .brand{width:70px;height:60px}
+ .editorial-nav .logo-crop{transform:scale(.64)}
+ header.editorial-nav #motion{right:16px;top:85px;font-size:8px}
+ .editorial-card{flex-basis:82vw}
+ .editorial-gallery{gap:18px;padding-left:9vw;padding-right:9vw}
+ .editorial-section{padding-top:28px!important}
+ .gallery-heading h2{font-size:33px}
+ .editorial-art{height:210px}
+}
+@media(prefers-reduced-motion:reduce){.editorial-gallery{scroll-behavior:auto}.editorial-card,.editorial-nav nav a,.editorial-nav nav a:after{transition:none}}

@@ -45,3 +45,6 @@ Entrada com logo central deslizando até a navbar (sem bloquear scroll; ignorada
 
 ## Ajuste de rolagem
 Rolagem nativa sem inércia Lenis e sem empilhamento sticky. Cenas mantêm a composição compacta; revelação curta de 24 px ocorre uma vez, sem apagar conteúdo ao voltar. Links de âncora usam smooth scroll nativo. Entrada da marca segura a logo por 1,25 s após sua aparição, antes do deslocamento de 1,1 s. Símbolos decorativos removidos. A referência zestudio.online não pôde ser consultada (DNS indisponível).
+
+## Direção Scheme Engine
+Referência observada: https://www.schemeengine.com/ (home, Work e Directors). Navbar simétrica com logo central e quatro links; hover com expansão sutil das letras, linha e indicação da seção ativa. Programas e equipe em galerias horizontais com card central destacado, snap nativo, toque/teclado e botões anterior/próximo. Retratos e artes ainda não fornecidos continuam como composições tipográficas sinalizadas; nenhuma imagem da referência foi copiada. Barra de rolagem oculta, mantendo scroll vertical e horizontal funcional.

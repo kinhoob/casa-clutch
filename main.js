@@ -38,14 +38,38 @@ document.addEventListener('visibilitychange',syncVideo);
 function syncHeader(){
  const show=hero.getBoundingClientRect().bottom<=header.offsetHeight+80;
  header.classList.toggle('is-scrolled',show);
- const nav=header.querySelector('nav');
- nav.inert=!show;
- nav.setAttribute('aria-hidden',String(!show));
+ header.querySelectorAll('nav').forEach(nav=>{nav.inert=false;nav.removeAttribute('aria-hidden');});
  motion.inert=!show;
 }
 addEventListener('scroll',syncHeader,{passive:true});
 addEventListener('resize',syncHeader);
 syncHeader();
+new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{if(entry.isIntersecting)header.querySelectorAll('nav a').forEach(link=>{
+  if(link.getAttribute('href')==='#'+entry.target.id)link.setAttribute('aria-current','location');
+  else link.removeAttribute('aria-current');
+ });});
+},{rootMargin:'-15% 0px -55% 0px'}).observe(document.querySelector('#programas'));
+const navObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)header.querySelectorAll('nav a').forEach(link=>{
+ if(link.getAttribute('href')==='#'+entry.target.id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');
+});}),{rootMargin:'-15% 0px -55% 0px'});
+['inicio','criadores','marcas','briefing'].forEach(id=>navObserver.observe(document.getElementById(id)));
+document.querySelectorAll('.editorial-gallery').forEach(gallery=>{
+ const cards=[...gallery.children];
+ function highlight(){
+  const mid=gallery.getBoundingClientRect().left+gallery.clientWidth/2;
+  let current=cards[0],distance=Infinity;
+  cards.forEach(card=>{const r=card.getBoundingClientRect(),d=Math.abs(r.left+r.width/2-mid);if(d<distance){current=card;distance=d;}});
+  cards.forEach(card=>card.classList.toggle('is-current',card===current));
+ }
+ gallery.addEventListener('scroll',highlight,{passive:true});
+ addEventListener('resize',highlight);highlight();
+ document.querySelectorAll('[data-gallery="'+gallery.id+'"]').forEach(button=>button.addEventListener('click',()=>{
+  const index=cards.findIndex(card=>card.classList.contains('is-current'));
+  const next=cards[Math.max(0,Math.min(cards.length-1,index+Number(button.dataset.direction)))];
+  gallery.scrollTo({left:gallery.scrollLeft+next.getBoundingClientRect().left+next.offsetWidth/2-(gallery.getBoundingClientRect().left+gallery.clientWidth/2),behavior:reduced.matches?'instant':'smooth'});
+ }));
+});
 function setupMotion(){
  cleanup(); cleanup=()=>{};
  const disabled = paused || reduced.matches;
