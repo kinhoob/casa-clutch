@@ -159,3 +159,5 @@ header.editorial-nav.nav-pending nav{opacity:0;visibility:hidden;transform:trans
 .editorial-gallery.swiper .editorial-card{width:min(650px,78vw);flex-shrink:0;flex-basis:auto;scroll-snap-align:none}
 .editorial-card.swiper-slide-active{opacity:1;transform:perspective(1400px) rotateY(0deg) scale(1)}
 @media(max-width:700px){.editorial-gallery.swiper .editorial-card{width:82vw}}
+
+.editorial-art.program-photo{height:auto;aspect-ratio:16/9}.editorial-art.program-photo img{object-fit:contain}.editorial-art.person-photo{height:clamp(280px,42vh,440px);background:#111}.editorial-art.person-photo img{object-position:center 35%}
