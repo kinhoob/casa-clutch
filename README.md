@@ -1,0 +1,32 @@
+# Casa Clutch — primeira versão para confirmação
+
+Projeto independente do Estúdio Z. HTML, CSS e JavaScript estáticos com bibliotecas locais GSAP/ScrollTrigger e Lenis. Abra `index.html` no navegador para visualizar o layout; não exige instalação nem build. Pode ser servido por qualquer hospedagem estática, inclusive GitHub Pages em subdiretório, pois usa caminhos relativos.
+
+## Direção proposta
+
+“Sua essência. Próximo nível.” é uma proposta de título editorial. A frase dos donos foi preservada exatamente: “Aqui não muda quem você é... só acelera onde você pode chegar.” Logo original recebido, sem redesenho. Paleta monocromática e artes tipográficas provisórias; direção visual e identidade completa a confirmar. Scheme Engine inspira a narrativa e o ritmo, sem copiar ativos ou layout.
+
+## Conteúdo confirmado
+
+- Pelo usuário: hub físico de criadores, foco em patrocinadores, logo, frase e nome “Cozinhando com a Kika”.
+- No canal https://www.youtube.com/@CasaClutch em 11/10/2026: frase, Instagram casa.clutch, 16,2 mil inscritos e 276 vídeos (arredondados, snapshot público).
+- Apresentação: https://www.youtube.com/watch?v=MXs665ZSKeQ
+- Tour: https://www.youtube.com/watch?v=qy8shmH8G9M — descrição menciona Rex, Santana, sala gamer, setup de lives, piscina aquecida, estúdio de música e ringue de boxe. Disponibilidade atual a confirmar.
+
+## A confirmar
+
+Conceito/títulos/textos propostos; paleta e fontes completas; fotos e reel; cidade/endereço; história e datas; nomes completos/funções/bios/equipe; sinopses/frequência/episódios/artes e outros programas; mídia kit, audiência, alcance/engajamento consolidados; oferta comercial, entregas/valores, contratos; parceiros/cases e autorizações; e-mail/WhatsApp/responsável comercial; domínio e publicação.
+
+As sugestões de patrocínio não são uma oferta aprovada. Não há marcas fictícias, depoimentos ou promessas de alcance. Nomes Rex/Santana aparecem porque foram citados na descrição oficial, sem atribuir cargo de fundador. Kika foi informada pelo usuário; biografia não inventada.
+
+## Funcionalidade e privacidade
+
+Navegação, links oficiais, seções expansíveis, pausa de animações e formulário que baixa um briefing em TXT. O formulário não envia dados, não persiste informações nem simula contato. Sem analytics, fontes externas, vídeo automático ou embeds. Conteúdo visível mesmo com JS desativado. Respeita `prefers-reduced-motion`; GSAP/Lenis são opcionais. Vídeos abrem no YouTube apenas por ação do visitante.
+
+## Arquivos
+
+`index.html`, `style.css`, `main.js`, `assets/logo.png` e `vendor/` (bibliotecas e licenças). `preview.cjs` é um servidor local opcional: `node preview.cjs`; usa 127.0.0.1:5180.
+
+Repositório: https://github.com/kinhoob/casa-clutch (privado).
+
+Status: primeira versão para revisão; site ainda não publicado. Projeto separado do Estúdio Z. O arquivo `.nojekyll` prepara a raiz para hospedagem estática; a ativação de Pages e seu endereço dependerão das opções de visibilidade/hospedagem escolhidas depois da revisão.
