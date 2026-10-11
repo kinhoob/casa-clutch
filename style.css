@@ -147,3 +147,9 @@ header.editorial-nav.is-scrolled #motion{opacity:1;visibility:visible}
  .editorial-art{height:210px}
 }
 @media(prefers-reduced-motion:reduce){.editorial-gallery{scroll-behavior:auto}.editorial-card,.editorial-nav nav a,.editorial-nav nav a:after{transition:none}}
+.editorial-gallery{position:relative}
+.editorial-card{transform:perspective(1400px) rotateY(var(--tilt,0deg)) scale(.92);transition:opacity .45s,transform .55s cubic-bezier(.2,.7,.2,1)}
+.editorial-card.is-current,.editorial-card:focus-within{transform:perspective(1400px) rotateY(0deg) scale(1)}
+header.editorial-nav nav{transition:opacity .55s,transform .55s,visibility .55s}
+header.editorial-nav.nav-pending nav{opacity:0;visibility:hidden;transform:translateY(8px);pointer-events:none}
+@media(prefers-reduced-motion:reduce){.editorial-card{transform:none!important;transition:none!important}header.editorial-nav nav{transition:none!important}}
