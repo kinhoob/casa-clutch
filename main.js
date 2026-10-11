@@ -21,7 +21,7 @@ const scenes=[...document.querySelectorAll('main > .section')];
 function fitScenes(){
  scenes.forEach(scene=>scene.classList.remove('scene-fit'));
  if(innerWidth<1000 || reduced.matches || paused)return;
- scenes.forEach(scene=>{if(scene.scrollHeight<=innerHeight-94)scene.classList.add('scene-fit');});
+ scenes.forEach(scene=>scene.classList.add('scene-fit'));
 }
 addEventListener('resize',fitScenes);
 document.querySelectorAll('details').forEach(detail=>detail.addEventListener('toggle',()=>{fitScenes();window.ScrollTrigger?.refresh();}));
@@ -57,19 +57,16 @@ function setupMotion(){
  fitScenes();
  if(disabled || !window.gsap || !window.ScrollTrigger) return;
  gsap.registerPlugin(ScrollTrigger);
- const lenis = window.Lenis ? new Lenis({duration:1.05,anchors:false}) : null;
- const tick=t=>lenis?.raf(t*1000);
- if(lenis){lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(tick);}
  const context=gsap.context(()=>{
   gsap.from('.hero h1',{y:30,opacity:0,duration:.9,ease:'power3.out'});
   scenes.forEach(scene=>{
    const content=[...scene.children];
-   gsap.from(content,{y:65,opacity:0,stagger:.06,duration:.85,ease:'power3.out',
-    scrollTrigger:{trigger:scene,start:'top 78%',toggleActions:'play none none reverse'}});
+   gsap.from(content,{y:24,opacity:0,stagger:.035,duration:.65,ease:'power2.out',
+    scrollTrigger:{trigger:scene,start:'top 88%',once:true}});
   });
-  gsap.to('.hero-content',{y:-70,opacity:0,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom 35%',scrub:true}});
+  gsap.to('.hero-content',{y:-25,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:.3}});
  });
- cleanup=()=>{context.revert();gsap.ticker.remove(tick);lenis?.destroy();};
+ cleanup=()=>context.revert();
 }
 motion.addEventListener('click',()=>{paused=!paused;setupMotion();});
 reduced.addEventListener('change',setupMotion);
@@ -82,8 +79,8 @@ if(window.gsap && !reduced.matches && scrollY<100 && !location.hash){
  const introTimeline=gsap.timeline({onComplete:()=>{intro.remove();gsap.set(brand,{clearProps:'opacity'});}});
  gsap.set(brand,{opacity:0});
  introTimeline.from(mark,{opacity:0,scale:2,duration:.5,ease:'power2.out'})
-  .to(intro,{backgroundColor:'rgba(5,5,5,0)',duration:.5},'+=.15')
-  .to(mark,{x:to.left+to.width/2-(from.left+from.width/2),y:to.top+to.height/2-(from.top+from.height/2),scale:innerWidth<700?.78:1,duration:.9,ease:'power3.inOut'},'<')
+  .to(intro,{backgroundColor:'rgba(5,5,5,0)',duration:.7},'+=1.25')
+  .to(mark,{x:to.left+to.width/2-(from.left+from.width/2),y:to.top+to.height/2-(from.top+from.height/2),scale:innerWidth<700?.78:1,duration:1.1,ease:'power3.inOut'},'<')
   .set(brand,{opacity:1});
  addEventListener('resize',()=>{introTimeline.progress(1);},{once:true});
  reduced.addEventListener('change',()=>{if(reduced.matches)introTimeline.progress(1);});

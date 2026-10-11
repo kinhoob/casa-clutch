@@ -42,3 +42,6 @@ Produção sugerida: desktop 16:9, 1920 × 1080; mobile 9:16, 1080 × 1920. MP4 
 
 ## Navegação em cenas
 Entrada com logo central deslizando até a navbar (sem bloquear scroll; ignorada em reduced motion e links diretos). Botão da hero removido a pedido; pausa geral permanece na navbar após a abertura. Estrutura e criadores foram agrupados em detalhes expansíveis, preservando os dados. Seções compactas ficam presas ao topo durante a troca de cenas somente quando cabem na altura disponível; telas pequenas, texto ampliado e detalhes abertos usam fluxo normal. Transições GSAP de entrada/saída, respeitando reduced motion. Não exige rolagem artificial nem esconde conteúdo comercial permanentemente.
+
+## Ajuste de rolagem
+Rolagem nativa sem inércia Lenis e sem empilhamento sticky. Cenas mantêm a composição compacta; revelação curta de 24 px ocorre uma vez, sem apagar conteúdo ao voltar. Links de âncora usam smooth scroll nativo. Entrada da marca segura a logo por 1,25 s após sua aparição, antes do deslocamento de 1,1 s. Símbolos decorativos removidos. A referência zestudio.online não pôde ser consultada (DNS indisponível).
