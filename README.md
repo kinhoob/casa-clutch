@@ -32,3 +32,10 @@ Repositório: https://github.com/kinhoob/casa-clutch (público, com autorizaçã
 Prévia pública: https://kinhoob.github.io/casa-clutch/
 
 Status: primeira versão para revisão, com informações pendentes marcadas a confirmar. Projeto separado do Estúdio Z. GitHub Pages publica a branch `main`, pasta raiz, com HTTPS e `.nojekyll`. Alterações salvas nessa branch atualizam o site automaticamente.
+
+## Hero e direção escura
+Fundo preto, detalhes em cinza escuro e marca branca (versão monocromática do logo original via CSS). A navbar abre apenas com a marca; os links aparecem ao sair da hero. Conteúdo comercial e pendências preservados.
+
+Vídeo ainda não recebido: a hero usa um fundo gráfico provisório, sem requisitar arquivos inexistentes. Para conectar o reel, preencha heroVideos.desktop e heroVideos.mobile em main.js com caminhos relativos. O player cobre a tela sem distorção, com recorte central, mudo, loop, pausa e respeito a reduced motion.
+
+Produção sugerida: desktop 16:9, 1920 × 1080; mobile 9:16, 1080 × 1920. MP4 H.264 sem áudio, loop de 10–20 segundos; objetivo de até 8 MB no desktop e 4 MB no celular, ajustando conforme qualidade visual. Não incluir texto no vídeo; reservar a região central/esquerda para o texto HTML e manter rostos/ações longe das bordas. Entregar também uma imagem de capa para reduced motion e carregamento. Esses tamanhos e limites são metas deste projeto, não exigências do navegador.

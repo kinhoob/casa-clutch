@@ -1,13 +1,44 @@
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const motion = document.getElementById('motion');
 let paused = false, cleanup = () => {};
+const heroVideo=document.getElementById('hero-video');
+const heroMotion=document.getElementById('hero-motion');
+// Preencha com os arquivos aprovados quando o reel estiver disponível.
+const heroVideos={desktop:'',mobile:''};
+const mobileVideo=matchMedia('(max-width:700px)');
+function syncVideo(){
+ const source=mobileVideo.matches ? (heroVideos.mobile||heroVideos.desktop) : heroVideos.desktop;
+ if(source && heroVideo.getAttribute('src')!==source){heroVideo.src=source;heroVideo.load();}
+ if(!source || paused || reduced.matches){heroVideo.pause();return;}
+ heroVideo.play().catch(()=>{});
+}
+heroVideo.addEventListener('playing',()=>document.body.classList.add('video-ready'));
+heroVideo.addEventListener('error',()=>document.body.classList.remove('video-ready'));
+mobileVideo.addEventListener('change',syncVideo);
+const header=document.querySelector('header');
+const hero=document.querySelector('.hero');
+function syncHeader(){
+ const show=hero.getBoundingClientRect().bottom<=header.offsetHeight+80;
+ header.classList.toggle('is-scrolled',show);
+ const nav=header.querySelector('nav');
+ nav.inert=!show;
+ nav.setAttribute('aria-hidden',String(!show));
+ motion.inert=!show;
+}
+addEventListener('scroll',syncHeader,{passive:true});
+addEventListener('resize',syncHeader);
+syncHeader();
 function setupMotion(){
  cleanup(); cleanup=()=>{};
  const disabled = paused || reduced.matches;
+ syncVideo();
  document.body.classList.toggle('motion-off',disabled);
  motion.disabled = reduced.matches;
  motion.setAttribute('aria-pressed',String(disabled));
  motion.textContent = reduced.matches ? 'Movimento reduzido' : paused ? 'Ativar movimento' : 'Pausar movimento';
+ heroMotion.disabled=reduced.matches;
+ heroMotion.setAttribute('aria-pressed',String(disabled));
+ heroMotion.textContent=paused?'Reproduzir vídeo':'Pausar vídeo';
  if(disabled || !window.gsap || !window.ScrollTrigger) return;
  gsap.registerPlugin(ScrollTrigger);
  const lenis = window.Lenis ? new Lenis({duration:1.05,anchors:false}) : null;
@@ -16,11 +47,11 @@ function setupMotion(){
  const context=gsap.context(()=>{
   gsap.from('.hero h1',{y:30,opacity:0,duration:.9,ease:'power3.out'});
   document.querySelectorAll('[data-reveal]').forEach(el=>gsap.from(el,{y:40,duration:.8,scrollTrigger:{trigger:el,start:'top 90%',once:true}}));
-  gsap.to('.orb',{rotation:45,scale:1.12,ease:'none',scrollTrigger:{trigger:'.film-poster',start:'top bottom',end:'bottom top',scrub:1}});
  });
  cleanup=()=>{context.revert();gsap.ticker.remove(tick);lenis?.destroy();};
 }
 motion.addEventListener('click',()=>{paused=!paused;setupMotion();});
+heroMotion.addEventListener('click',()=>{paused=!paused;setupMotion();});
 reduced.addEventListener('change',setupMotion);
 setupMotion();
 document.getElementById('brief-form').addEventListener('submit',event=>{
