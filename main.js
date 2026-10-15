@@ -59,6 +59,9 @@ const navObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(e
 const carousels=[];
 document.querySelectorAll('.editorial-gallery').forEach(gallery=>{
  if(!window.Swiper)return;
+ const total=gallery.children.length;
+ const counter=document.querySelector('[data-counter="'+gallery.id+'"]');
+ const updateCounter=instance=>{if(counter)counter.textContent=String(instance.realIndex+1).padStart(2,'0')+' / '+String(total).padStart(2,'0');};
  const wrapper=document.createElement('div');wrapper.className='swiper-wrapper';
  [...gallery.children].forEach(card=>{card.classList.add('swiper-slide');wrapper.append(card);});
  gallery.append(wrapper);gallery.classList.add('swiper');
@@ -66,10 +69,10 @@ document.querySelectorAll('.editorial-gallery').forEach(gallery=>{
  const swiper=new Swiper(gallery,{
   slidesPerView:1.8,centeredSlides:true,spaceBetween:30,loop:true,loopedSlides:3,
   speed:speed(),grabCursor:true,watchSlidesProgress:true,
-  breakpoints:{0:{spaceBetween:18,slidesPerView:1.2},701:{spaceBetween:30,slidesPerView:1.8},1400:{spaceBetween:30,slidesPerView:2.3}},
+  breakpoints:gallery.id==='people-gallery'?{0:{spaceBetween:18,slidesPerView:1.45},701:{spaceBetween:32,slidesPerView:2.6},1400:{spaceBetween:40,slidesPerView:3.2}}:{0:{spaceBetween:18,slidesPerView:1.15},701:{spaceBetween:30,slidesPerView:1.8},1400:{spaceBetween:30,slidesPerView:2.3}},
   navigation:{prevEl:document.querySelector('[data-gallery="'+gallery.id+'"][data-direction="-1"]'),nextEl:document.querySelector('[data-gallery="'+gallery.id+'"][data-direction="1"]')},
   a11y:{enabled:true,prevSlideMessage:'Item anterior',nextSlideMessage:'Próximo item',slideLabelMessage:'{{index}} de {{slidesLength}}'},
-  on:{progress(instance){instance.slides.forEach(card=>{card.style.setProperty('--tilt',Math.max(-8,Math.min(8,-card.progress*6))+'deg');});}}
+  on:{init:updateCounter,slideChange:updateCounter,progress(instance){instance.slides.forEach(card=>{card.style.setProperty('--tilt',Math.max(-8,Math.min(8,-card.progress*6))+'deg');});}}
  });
  carousels.push(swiper);
  gallery.addEventListener('keydown',event=>{if(event.target!==gallery)return;if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();swiper.params.speed=speed();event.key==='ArrowRight'?swiper.slideNext():swiper.slidePrev();}});

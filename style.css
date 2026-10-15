@@ -162,3 +162,11 @@ header.editorial-nav.nav-pending nav{opacity:0;visibility:hidden;transform:trans
 
 .editorial-art.program-photo{height:auto;aspect-ratio:16/9}.editorial-art.program-photo img{object-fit:contain}.editorial-art.person-photo{height:clamp(280px,42vh,440px);background:#111}.editorial-art.person-photo img{object-position:center 35%}
 .editorial-gallery.swiper{width:100%;max-width:100%;min-width:0;align-self:stretch}
+
+/* Commercial narrative and carousel refinement */
+.brand-reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin:36px 0}
+.brand-reasons article{border-top:1px solid #383838;padding-top:20px}.brand-reasons h3{font-size:28px;line-height:1.15;margin:14px 0}.brand-reasons p,.brand-intro p{color:#bdbdbd;font-size:15px}
+.brand-proof{padding:24px;background:#101010;border:1px solid #222;display:grid;grid-template-columns:1fr auto;gap:15px 28px;margin-bottom:28px}.brand-proof>.eyebrow,.brand-proof small{grid-column:1/-1}.brand-proof p{max-width:750px}.brand-proof .link{align-self:center}.brand-proof small{color:#999;font-size:12px}
+.gallery-controls{display:flex;align-items:center;justify-content:center;gap:22px}.gallery-controls button{min-height:44px;min-width:100px;border:1px solid #3b3b3b;padding:10px 15px;color:#eee;transition:background .2s,border-color .2s}.gallery-controls button:hover{background:#1b1b1b;border-color:#777}.gallery-position{min-width:68px;text-align:center;color:#b8b8b8;font:12px monospace;letter-spacing:.12em}
+.programs .editorial-art{height:auto;aspect-ratio:16/9}.creators .editorial-art.person-photo{height:auto;aspect-ratio:4/5}.creators .person-photo img{object-position:center center}.editorial-card p{font-size:15px;line-height:1.55}.editorial-card .draft{font-size:11px}.editorial-gallery.swiper .swiper-wrapper{align-items:stretch}.editorial-card.swiper-slide{height:auto}.editorial-card:not(.swiper-slide-active){opacity:.6}
+@media(max-width:700px){.brand-reasons{grid-template-columns:1fr;gap:22px;margin:24px 0}.brand-proof{grid-template-columns:1fr;padding:20px}.brand-proof .link{justify-self:start}.gallery-controls{gap:10px}.gallery-controls button{min-width:88px;font-size:10px;padding:10px}.gallery-position{font-size:11px;min-width:62px}.editorial-card p{font-size:14px}.brand-reasons h3{font-size:25px}}
